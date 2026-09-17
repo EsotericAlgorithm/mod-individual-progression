@@ -435,9 +435,14 @@ IndividualProgression.BotAccountsEarnPvPTitles = 0
 #
 #        Description: Set the maximum level for bot accounts
 #
-#        Default:     80
+#        Default:     60 (kept at vanilla parity with normal accounts —
+#                     bot accounts skip the tiered progression checks
+#                     entirely, so this level cap plus the Outland/
+#                     Northrend teleport block in OnPlayerBeforeTeleport
+#                     are the only things actually keeping bots out of
+#                     TBC/WotLK content. Was 80 upstream.)
 #
-IndividualProgression.BotAccountsMaxLevel = 80
+IndividualProgression.BotAccountsMaxLevel = 60
 
 # IndividualProgression.BotAccountsRegex
 #

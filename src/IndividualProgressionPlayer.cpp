@@ -585,7 +585,19 @@ public:
             return false;
 
         if (!sIndividualProgression->enabled || player->IsGameMaster() || !sIndividualProgression->isNormalAccount(player))
+        {
+            // Bot accounts skip every progression-tier check below by
+            // design (see isBotAccount()/BotAccountsRegex), but should
+            // still never be able to enter Outland/Northrend at all,
+            // matching BotAccountsMaxLevel's intent of keeping bots to
+            // vanilla content (Matt, 2026-09-17).
+            if (sIndividualProgression->enabled && !player->IsGameMaster()
+                && sIndividualProgression->isBotAccount(player)
+                && (mapid == MAP_OUTLAND || mapid == MAP_NORTHREND))
+                return false;
+
             return true;
+        }
 
         if (mapid == MAP_BLACKWING_LAIR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_MOLTEN_CORE))
         {
